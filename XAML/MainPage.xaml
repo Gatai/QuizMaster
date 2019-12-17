@@ -1,0 +1,248 @@
+﻿<Page
+    x:Class="XAML.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XAML"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <!--<Grid >
+      
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <Rectangle Fill="Aquamarine" Grid.Row="1" Grid.Column="1" />
+        
+        <Rectangle Fill="Aqua"  Grid.Row="0" Grid.Column="1" />
+
+        <Border Background="BurlyWood"  > 
+           <TextBlock Text="hejdå " Grid.Column="1" FontSize="50" Margin="5"/>
+        </Border>
+        
+        <Button Content="click" Click="eventClick" Grid.Column="1" FontSize="40"/>
+      
+        <ListBox Grid.Row="1" Grid.Column="0" x:Name="Names">
+            <ListBoxItem>Gatai</ListBoxItem>
+            <ListBoxItem>Ester</ListBoxItem>
+            <ListBoxItem>Lena</ListBoxItem>
+        </ListBox>
+
+    </Grid>-->
+
+    <!--<Grid  Height="40">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="Aqua"
+                   Grid.Column="4"
+                   HorizontalAlignment="Stretch"
+                   />
+        <TextBlock 
+                   Foreground="Blue"
+                   Grid.Column="4"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Rectangle Text"
+                   TextTrimming="CharacterEllipsis" />
+    </Grid>-->
+
+    <!---<<<<<<<<<<<<<<<<    HEADER  <<<<<<<<<<<<<<<<<<<<-->
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--hur hög raden detr ska vara-->
+            <RowDefinition Height="200"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--Den täcker 2 columner-->
+        <Grid Background="Aquamarine" Grid.ColumnSpan="2" Grid.Row="0" >
+
+            <TextBlock Foreground="BlueViolet" FontSize="50" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center">
+               Welcome to Quiz master
+            </TextBlock>
+            <StackPanel HorizontalAlignment="Left">
+                <Image Source="Pictures/dice.png" Height="200" Width="200"/>
+            </StackPanel>
+
+            <Button Grid.Row="0" 
+                    HorizontalAlignment="Right" 
+                    Click="GetAllFood_Click" CommandParameter="{Binding ElementName = QTextBlock}" >Call API Food</Button>
+        </Grid>
+        <!---<<<<<<<<<<<<<<<<    SLUT PÅ HEADER  <<<<<<<<<<<<<<<<<<<<-->
+
+        <!-- <<<<<<<<<<<<<<<<<< BODY VÄNTER FÄLT <<<<<<<<<<<<<<<<<<<<<<<-->
+
+        <!--<Rectangle Fill="AntiqueWhite" 
+                       Stretch="Fill"
+                       Grid.Row="1" 
+                       Grid.Column="0"/>-->
+
+        <!--frågor drop down-->
+        <Grid Grid.Row="1" Grid.Column="0" >
+            <Grid.RowDefinitions >
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <!--<TextBlock >Selected Item </TextBlock>-->
+                <ComboBox x:Name="ComboBoxCategory" PlaceholderText="Select Category" Width="200">
+                    <ComboBoxItem IsSelected="True">Funny Jokes</ComboBoxItem>
+                    <ComboBoxItem >fråga 2</ComboBoxItem>
+                    <ComboBoxItem>fråga 3</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" Background="Beige">
+                <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="hard">
+                    hard
+                </RadioButton>
+                <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="medium">
+                    medium
+                </RadioButton>
+                <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="easy" IsChecked="True" >
+                    easy
+                </RadioButton>
+            </StackPanel>
+
+            <ListBox Grid.Row="2" >
+                <ListBoxItem>fråga 1</ListBoxItem>
+                <ListBoxItem>fråga 1</ListBoxItem>
+                <ListBoxItem>fråga 1</ListBoxItem>
+                <ListBoxItem>fråga 1</ListBoxItem>
+                <ListBoxItem>fråga 1</ListBoxItem>
+                <ListBoxItem>fråga 1</ListBoxItem>
+                <ListBoxItem>fråga 1</ListBoxItem>
+            </ListBox>
+
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="0" Name="grid">
+            <ComboBox PlaceholderText="Välj färg" Width="200">
+
+                <CheckBox x:Name="cb1" Checked="HandleCheck" Unchecked="HandleUnchecked" CommandParameter="{Binding ElementName = text1}" >gul</CheckBox>
+                <TextBlock x:Name="text1" />
+
+                <CheckBox x:Name="cb2" Checked="HandleCheck" Unchecked="HandleUnchecked" CommandParameter="{Binding ElementName = text2}">ful</CheckBox>
+                <TextBlock x:Name="text2"/>
+
+                <CheckBox x:Name="cb3" Checked="HandleCheck" Unchecked="HandleUnchecked" CommandParameter="{Binding ElementName = text3}">blää</CheckBox>
+                <TextBlock x:Name="text3"/>
+
+            </ComboBox>
+        </Grid>
+
+        <!--<<<<<<<<<<<<<<<<<<<<<<<SLUT PÅ VÄNSTER FÄLTET<<<<<<<<<<<<<<<<<<<<-->
+
+        <!-- <<<<<<<<<<<<<<<<< FÄLTET PÅ DEN ENSKILD FRÅGA OCH KNAPPARNA <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="303*"/>
+                <RowDefinition Height="397*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Fill="RosyBrown"/>
+            <!--<ListBox x:Name="Xz" DisplayMemberPath='TheQuestion'>
+            </ListBox>-->
+                <TextBlock FontSize="24" FontWeight="Bold" TextWrapping="Wrap" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" x:Name="QTextBlock">
+                </TextBlock>
+
+            <Rectangle Fill="Aquamarine" Grid.Row="1" Grid.RowSpan="2" />
+
+            <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" >
+                <!--rad-->
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--kolumn-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!--knapparna-->
+                <Button Background="Red" Grid.Row="0" Grid.Column="0" FontSize="18" FontWeight="Bold"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" 
+                        Height="75" x:Name="RedButton">
+                </Button>
+
+                <Button Background="Green" Grid.Row="0" Grid.Column="1" FontSize="18" FontWeight="Bold"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" 
+                        Height="75" x:Name="GreenButton">
+                    
+                </Button>
+
+                <Button Background="Blue" Grid.Row="1" Grid.Column="3" FontSize="18" FontWeight="Bold"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" 
+                        Height="75" x:Name="YellowButton">
+                </Button>
+
+                <Button Background="Yellow" Grid.Row="1" Grid.Column="0" FontSize="18" FontWeight="Bold"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" 
+                        Height="75" x:Name="BlueButton">
+                </Button>
+            </Grid>
+        </Grid>
+        <!-- <<<<<<<<<<<<<<<<<  SLUT, FÄLTET PÅ DEN ENSKILD FRÅGA OCH KNAPPARNA <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+
+        <!--<Rectangle Fill="Azure" 
+                       Stretch="Fill" 
+                       Grid.Row="1" 
+                       Grid.Column="1"/>-->
+
+
+        <!--<Button HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button.Content> -->
+        <!--Behöver inte ha det då det är redan i deafult i button-->
+        <!--
+                <StackPanel Orientation="Horizontal">
+                    
+        -->
+        <!--använder grid för att få den andra star på den första star-->
+        <!--
+        
+                    <Grid>
+                        
+                        
+                        -->
+        <!--<FontIcon Glyph="E726" Foreground="Red"/>
+                        <FontIcon Glyph="E726" Foreground="Black"/>-->
+
+        <!--<SymbolIcon Symbol="SolidStar" Foreground="Gold"/>
+                        <SymbolIcon Symbol="OutlineStar" Foreground="Black"/>-->
+        <!--
+                    </Grid>
+
+                    <TextBlock Text="Add Thing" Margin="5 0 0 0"/>
+
+                </StackPanel>
+            </Button.Content>
+
+        </Button>-->
+
+    </Grid>
+
+</Page>
