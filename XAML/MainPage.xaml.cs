@@ -46,9 +46,11 @@ namespace XAML
             if (button != null)
             {
                 //var message = new MessageDialog(" You click on the " + button.Content);
-                var message = new MessageDialog("RÄTT");
+                var message = new MessageDialog("Correct answer!");
                 await message.ShowAsync();
             }
+            //Hämtar en ny fråga om man klickat på rätt svar
+            GetNesxtQuestion();
         }
 
         private async void Button_Click_Incorrect(object sender, RoutedEventArgs e)
@@ -58,7 +60,7 @@ namespace XAML
             if (button != null)
             {
                 //var message = new MessageDialog(" You click on the " + button.Content);
-                var message = new MessageDialog("FEL");
+                var message = new MessageDialog("Wrong answer!");
                 await message.ShowAsync();
             }
         }
@@ -86,7 +88,11 @@ namespace XAML
 
         private async void GetAllFood_Click(object sender, RoutedEventArgs e)
         {
+            GetNesxtQuestion();
+        }
 
+        private async void GetNesxtQuestion()
+        {
             //Hämta första frågan
             var questions = await ApiHelper.GetQuestions(9, _difficulty);
             var question = questions.First();
@@ -114,7 +120,7 @@ namespace XAML
             {
                 BlueButton.Visibility = Visibility.Collapsed;
                 YellowButton.Visibility = Visibility.Collapsed;
-             
+
                 SetAnswerButton(GreenButton, answers[1], question.CorrectAnswer);
             }
         }
@@ -125,8 +131,9 @@ namespace XAML
             button.Click -= Button_Click_Correct;
             button.Click -= Button_Click_Incorrect;
             button.Content = answer;
-            if (answer == correctAnswer)
+            if (answer == correctAnswer) 
                 button.Click += Button_Click_Correct;
+
             else
                 button.Click += Button_Click_Incorrect;
         }
