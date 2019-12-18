@@ -31,7 +31,10 @@ namespace XAML
         public MainPage()
         {
             this.InitializeComponent();
-            //Här kan något hämta ifrån API:et.
+
+            //Hämta en fråga ifrån API
+            GetNextQuestion();
+            
         }
 
         //private async void eventClick(object sender, RoutedEventArgs e)
@@ -50,7 +53,7 @@ namespace XAML
                 await message.ShowAsync();
             }
             //Hämtar en ny fråga om man klickat på rätt svar
-            GetNesxtQuestion();
+            GetNextQuestion();
         }
 
         private async void Button_Click_Incorrect(object sender, RoutedEventArgs e)
@@ -88,10 +91,10 @@ namespace XAML
 
         private async void GetAllFood_Click(object sender, RoutedEventArgs e)
         {
-            GetNesxtQuestion();
+            //GetNextQuestion();
         }
 
-        private async void GetNesxtQuestion()
+        private async void GetNextQuestion()
         {
             //Hämta första frågan
             var questions = await ApiHelper.GetQuestions(9, _difficulty);

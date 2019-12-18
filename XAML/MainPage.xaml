@@ -83,9 +83,9 @@
                 <Image Source="Pictures/dice.png" Height="200" Width="200"/>
             </StackPanel>
 
-            <Button Grid.Row="0" 
+            <!--<Button Grid.Row="0" 
                     HorizontalAlignment="Right" 
-                    Click="GetAllFood_Click" CommandParameter="{Binding ElementName = QTextBlock}" >Call API Food</Button>
+                    Click="GetAllFood_Click" CommandParameter="{Binding ElementName = QTextBlock}" >Call API Food</Button>-->
         </Grid>
         <!---<<<<<<<<<<<<<<<<    SLUT PÅ HEADER  <<<<<<<<<<<<<<<<<<<<-->
 
