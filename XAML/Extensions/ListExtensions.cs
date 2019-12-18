@@ -9,6 +9,7 @@ namespace XAML.Extensions
 {
     public static class ListExtensions
     {
+
         public static void Shuffle<T>(this IList<T> list)
         {
             RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();

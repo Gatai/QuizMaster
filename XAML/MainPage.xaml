@@ -64,7 +64,7 @@
             <!--hur hög raden detr ska vara-->
             <RowDefinition Height="200"/>
             <RowDefinition/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="34"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -107,11 +107,15 @@
             <StackPanel>
                 <!--<TextBlock >Selected Item </TextBlock>-->
                 <ComboBox x:Name="ComboBoxCategory" PlaceholderText="Select Category" Width="200">
-                    <ComboBoxItem IsSelected="True">Funny Jokes</ComboBoxItem>
-                    <ComboBoxItem >fråga 2</ComboBoxItem>
-                    <ComboBoxItem>fråga 3</ComboBoxItem>
+                    <ComboBoxItem x:Name="ListItemBox1"> </ComboBoxItem>
+                    <ComboBoxItem x:Name="ListItemBox2"> </ComboBoxItem>
+                    <ComboBoxItem x:Name="ListItemBox3"> </ComboBoxItem>
+                    <ComboBoxItem x:Name="ListItemBox4"> </ComboBoxItem>
+                    <ComboBoxItem x:Name="ListItemBox5"> </ComboBoxItem>
                 </ComboBox>
+
             </StackPanel>
+
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" Background="Beige">
                 <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="hard">
                     hard
@@ -136,7 +140,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="3" Grid.Column="0" Name="grid">
+        <Grid Grid.Row="2" Grid.Column="0" Name="grid">
             <ComboBox PlaceholderText="Välj färg" Width="200">
 
                 <CheckBox x:Name="cb1" Checked="HandleCheck" Unchecked="HandleUnchecked" CommandParameter="{Binding ElementName = text1}" >gul</CheckBox>
@@ -164,12 +168,12 @@
             <Rectangle Fill="RosyBrown"/>
             <!--<ListBox x:Name="Xz" DisplayMemberPath='TheQuestion'>
             </ListBox>-->
-                <TextBlock FontSize="24" FontWeight="Bold" TextWrapping="Wrap" 
+            <TextBlock FontSize="24" FontWeight="Bold" TextWrapping="Wrap" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center" x:Name="QTextBlock">
-                </TextBlock>
+            </TextBlock>
 
-            <Rectangle Fill="Aquamarine" Grid.Row="1" Grid.RowSpan="2" />
+            <Rectangle Fill="Aquamarine" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,-32" />
 
             <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" >
                 <!--rad-->
@@ -192,7 +196,7 @@
                 <Button Background="Green" Grid.Row="0" Grid.Column="1" FontSize="18" FontWeight="Bold"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" 
                         Height="75" x:Name="GreenButton">
-                    
+
                 </Button>
 
                 <Button Background="Blue" Grid.Row="1" Grid.Column="3" FontSize="18" FontWeight="Bold"

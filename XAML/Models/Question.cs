@@ -39,6 +39,7 @@ namespace XAML.Models
                 var answers = new List<string>();
                 answers.Add(CorrectAnswer);
                 answers.AddRange(IncorrectAnswers);
+                //anropar ListExtenstions metoden
                 answers.Shuffle();
                 return answers;
             }

@@ -8,14 +8,20 @@ using System.Threading.Tasks;
 namespace XAML.Models
 {
     //Hämta ifrån ett annat api och får ner det i en array
-    class CategoryRoot
+    public class CategoryRoot
     {
-        [JsonProperty("trivia_categories")]
-        public Category[] QuizCategories { get; set; }
+        [JsonProperty("response_code")]
+        public int ResponseCode { get; set; }
+
+        [JsonProperty("results")]
+        public Category[] Categories { get; set; }
     }
 
-    class Category
+    public class Category
     {
-
+        [JsonProperty("category")]
+        public string CategoryName { get; set; }
     }
+
+
 }

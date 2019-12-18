@@ -15,18 +15,16 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using XAML.Models;
-using Newtonsoft.Json; 
+using Newtonsoft.Json;
 using XAML.Helpers;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace XAML
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
+        //synlig i denna klassen 
         private string _difficulty;
         public MainPage()
         {
@@ -34,12 +32,13 @@ namespace XAML
 
             //Hämta en fråga ifrån API
             GetNextQuestion();
-            
+            GetCategory();
+
         }
 
         //private async void eventClick(object sender, RoutedEventArgs e)
         //{
-  
+
         //}
 
         private async void Button_Click_Correct(object sender, RoutedEventArgs e)
@@ -89,10 +88,10 @@ namespace XAML
             //else text2.Text = "Three-state CheckBox checked.";
         }
 
-        private async void GetAllFood_Click(object sender, RoutedEventArgs e)
-        {
-            //GetNextQuestion();
-        }
+        //private async void GetAllFood_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //GetNextQuestion();
+        //}
 
         private async void GetNextQuestion()
         {
@@ -118,7 +117,7 @@ namespace XAML
 
             }
 
-            //om det finns 1 fel fråga då hide blå och gul
+            //True or False frågor
             if (question.IncorrectAnswers.Count == 1)
             {
                 BlueButton.Visibility = Visibility.Collapsed;
@@ -128,13 +127,26 @@ namespace XAML
             }
         }
 
+        private async void GetCategory()
+        {
+            var categorys = await ApiHelper.GetCategorys(6);
+            var category = categorys.First();
+
+            //Vill foreach alla category som finns och add to listitembox som com
+            //foreach (var item in categorys)
+            //{
+            //}
+
+               ListItemBox1.Content = category.CategoryName;
+        }
+
         private void SetAnswerButton(Button button, string answer, string correctAnswer)
         {
             //Städar bort föregående klick event
             button.Click -= Button_Click_Correct;
             button.Click -= Button_Click_Incorrect;
             button.Content = answer;
-            if (answer == correctAnswer) 
+            if (answer == correctAnswer)
                 button.Click += Button_Click_Correct;
 
             else
@@ -142,7 +154,7 @@ namespace XAML
         }
 
         private void SetLevel(object sender, RoutedEventArgs e)
-        {            
+        {
             _difficulty = (string)((RadioButton)sender).CommandParameter;
         }
     }
