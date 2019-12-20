@@ -1,22 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using XAML.Models;
-using Newtonsoft.Json;
 using XAML.Helpers;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+using XAML.Models;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,13 +18,14 @@ namespace XAML
     {
         //synlig i denna klassen 
         private string _difficulty;
+        public List<Category> Categories { get; set; }
         public MainPage()
         {
             this.InitializeComponent();
 
             //Hämta en fråga ifrån API
+            GetCategories();
             GetNextQuestion();
-            GetCategory();
 
         }
 
@@ -127,17 +120,21 @@ namespace XAML
             }
         }
 
-        private async void GetCategory()
+        private  void GetCategories()
         {
-            var categorys = await ApiHelper.GetCategorys(6);
-            var category = categorys.First();
+            var task = Task.Run(() => ApiHelper.GetCategories());
+            task.Wait();
+            Categories = task.Result;            
 
-            //Vill foreach alla category som finns och add to listitembox som com
+            ////var category = categorys.First();
+
+            //var comobox = categorys.Add as ComboBox;
+            ////Vill foreach alla category som finns och add to listitembox som com
             //foreach (var item in categorys)
             //{
+            //    //ListItemBox1.Content = item.CategoryName;
             //}
-
-               ListItemBox1.Content = category.CategoryName;
+            //ListItemBox1.Content = category.CategoryName;
         }
 
         private void SetAnswerButton(Button button, string answer, string correctAnswer)

@@ -106,12 +106,12 @@
 
             <StackPanel>
                 <!--<TextBlock >Selected Item </TextBlock>-->
-                <ComboBox x:Name="ComboBoxCategory" PlaceholderText="Select Category" Width="200">
-                    <ComboBoxItem x:Name="ListItemBox1"> </ComboBoxItem>
-                    <ComboBoxItem x:Name="ListItemBox2"> </ComboBoxItem>
-                    <ComboBoxItem x:Name="ListItemBox3"> </ComboBoxItem>
-                    <ComboBoxItem x:Name="ListItemBox4"> </ComboBoxItem>
-                    <ComboBoxItem x:Name="ListItemBox5"> </ComboBoxItem>
+                <ComboBox x:Name="CategoryComboBox"
+                          ItemsSource="{x:Bind Categories}"
+                          DisplayMemberPath="CategoryName"
+                          SelectedValuePath="Id"
+                          PlaceholderText="Select Category"
+                          Width="200">
                 </ComboBox>
 
             </StackPanel>

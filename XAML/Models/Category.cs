@@ -10,16 +10,16 @@ namespace XAML.Models
     //Hämta ifrån ett annat api och får ner det i en array
     public class CategoryRoot
     {
-        [JsonProperty("response_code")]
-        public int ResponseCode { get; set; }
-
-        [JsonProperty("results")]
+        [JsonProperty("trivia_categories")]
         public Category[] Categories { get; set; }
     }
 
     public class Category
     {
-        [JsonProperty("category")]
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("name")]
         public string CategoryName { get; set; }
     }
 
