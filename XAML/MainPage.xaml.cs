@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using XAML.Models;
 using System.Threading.Tasks;
+using System.Web;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -94,7 +95,7 @@ namespace XAML
 
             var answers = question.RandomAnswers;
 
-            QTextBlock.Text = question.TheQuestion;
+            QTextBlock.Text = HttpUtility.HtmlDecode(question.TheQuestion);
 
             SetAnswerButton(RedButton, answers[0], question.CorrectAnswer);
 
@@ -104,9 +105,9 @@ namespace XAML
                 BlueButton.Visibility = Visibility.Visible;
                 YellowButton.Visibility = Visibility.Visible;
 
-                SetAnswerButton(GreenButton, answers[1], question.CorrectAnswer);
-                SetAnswerButton(YellowButton, answers[2], question.CorrectAnswer);
-                SetAnswerButton(BlueButton, answers[3], question.CorrectAnswer);
+                SetAnswerButton(GreenButton, answers[1], HttpUtility.HtmlDecode(question.CorrectAnswer));
+                SetAnswerButton(YellowButton, answers[2], HttpUtility.HtmlDecode(question.CorrectAnswer));
+                SetAnswerButton(BlueButton, answers[3], HttpUtility.HtmlDecode(question.CorrectAnswer));
 
             }
 
