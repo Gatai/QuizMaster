@@ -24,9 +24,9 @@ namespace XAML
             this.InitializeComponent();
 
             //Hämta en fråga ifrån API
+            //detta startat direkt när programmet är igång
             GetCategories();
             GetNextQuestion();
-
         }
 
         //private async void eventClick(object sender, RoutedEventArgs e)
@@ -125,16 +125,6 @@ namespace XAML
             var task = Task.Run(() => ApiHelper.GetCategories());
             task.Wait();
             Categories = task.Result;            
-
-            ////var category = categorys.First();
-
-            //var comobox = categorys.Add as ComboBox;
-            ////Vill foreach alla category som finns och add to listitembox som com
-            //foreach (var item in categorys)
-            //{
-            //    //ListItemBox1.Content = item.CategoryName;
-            //}
-            //ListItemBox1.Content = category.CategoryName;
         }
 
         private void SetAnswerButton(Button button, string answer, string correctAnswer)
