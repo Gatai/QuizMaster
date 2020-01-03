@@ -61,10 +61,10 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <!--hur hög raden detr ska vara-->
+            <!--hur hög raden det ska vara-->
             <RowDefinition Height="200"/>
             <RowDefinition/>
-            <RowDefinition Height="34"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -113,6 +113,8 @@
                           PlaceholderText="Select Category"
                           Width="200">
                 </ComboBox>
+                
+              
 
             </StackPanel>
 
@@ -128,31 +130,29 @@
                 </RadioButton>
             </StackPanel>
 
-            <ListBox Grid.Row="2" >
-                <ListBoxItem>fråga 1</ListBoxItem>
-                <ListBoxItem>fråga 1</ListBoxItem>
-                <ListBoxItem>fråga 1</ListBoxItem>
-                <ListBoxItem>fråga 1</ListBoxItem>
-                <ListBoxItem>fråga 1</ListBoxItem>
-                <ListBoxItem>fråga 1</ListBoxItem>
-                <ListBoxItem>fråga 1</ListBoxItem>
-            </ListBox>
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Background="White">
+                <RadioButton GroupName="type" Checked="SetType" CommandParameter="mix">
+                    Any Type
+                </RadioButton>
+                <RadioButton GroupName="type" Checked="SetType" CommandParameter="multiple">
+                    Multiple choice
+                </RadioButton>
+                <RadioButton GroupName="type" Checked="SetType" CommandParameter="boolean" IsChecked="True" >
+                    True/False
+                </RadioButton>
+            </StackPanel>
 
-        </Grid>
+            <!--<Grid Grid.Row="3" Grid.Column="3" Name="grid">
+            <ComboBox PlaceholderText="Select Type" Width="200">
 
-        <Grid Grid.Row="2" Grid.Column="0" Name="grid">
-            <ComboBox PlaceholderText="Välj färg" Width="200">
+                    <CheckBox x:Name="cb1">Random</CheckBox>
 
-                <CheckBox x:Name="cb1" Checked="HandleCheck" Unchecked="HandleUnchecked" CommandParameter="{Binding ElementName = text1}" >gul</CheckBox>
-                <TextBlock x:Name="text1" />
+                <CheckBox x:Name="cb2">Multiple choice</CheckBox>
 
-                <CheckBox x:Name="cb2" Checked="HandleCheck" Unchecked="HandleUnchecked" CommandParameter="{Binding ElementName = text2}">ful</CheckBox>
-                <TextBlock x:Name="text2"/>
-
-                <CheckBox x:Name="cb3" Checked="HandleCheck" Unchecked="HandleUnchecked" CommandParameter="{Binding ElementName = text3}">blää</CheckBox>
-                <TextBlock x:Name="text3"/>
-
-            </ComboBox>
+                    <CheckBox x:Name="cb3">True/False</CheckBox>
+                </ComboBox>
+            </Grid>-->
+            
         </Grid>
 
         <!--<<<<<<<<<<<<<<<<<<<<<<<SLUT PÅ VÄNSTER FÄLTET<<<<<<<<<<<<<<<<<<<<-->

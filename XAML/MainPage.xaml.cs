@@ -19,6 +19,7 @@ namespace XAML
     {
         //synlig i denna klassen 
         private string _difficulty;
+        private string _type;
         public List<Category> Categories { get; set; }
         public MainPage()
         {
@@ -29,11 +30,6 @@ namespace XAML
             GetCategories();
             GetNextQuestion();
         }
-
-        //private async void eventClick(object sender, RoutedEventArgs e)
-        //{
-
-        //}
 
         private async void Button_Click_Correct(object sender, RoutedEventArgs e)
         {
@@ -61,26 +57,26 @@ namespace XAML
             }
         }
 
-        private void HandleCheck(object sender, RoutedEventArgs e)
-        {
-            CheckBox checkbox = sender as CheckBox;
-            var textBlock = checkbox.CommandParameter as TextBlock;
+        //private void HandleCheck(object sender, RoutedEventArgs e)
+        //{
+        //    CheckBox checkbox = sender as CheckBox;
+        //    var textBlock = checkbox.CommandParameter as TextBlock;
 
-            textBlock.Text = "Checkbox checked";
+        //    textBlock.Text = "Checkbox checked";
 
-            //if (checkbox.Name == "cb1") text1.Text = "Two-state CheckBox checked.";
-            //else text2.Text = "Three-state CheckBox checked.";
-        }
+        //    //if (checkbox.Name == "cb1") text1.Text = "Two-state CheckBox checked.";
+        //    //else text2.Text = "Three-state CheckBox checked.";
+        //}
 
-        private void HandleUnchecked(object sender, RoutedEventArgs e)
-        {
-            CheckBox checkbox = sender as CheckBox;
-            var textBlock = checkbox.CommandParameter as TextBlock;
+        //private void HandleUnchecked(object sender, RoutedEventArgs e)
+        //{
+        //    CheckBox checkbox = sender as CheckBox;
+        //    var textBlock = checkbox.CommandParameter as TextBlock;
 
-            textBlock.Text = "Unchecked";
-            //if (checkbox.Name == "cb1") text1.Text = "Two-state CheckBox unchecked.";
-            //else text2.Text = "Three-state CheckBox checked.";
-        }
+        //    textBlock.Text = "Unchecked";
+        //    //if (checkbox.Name == "cb1") text1.Text = "Two-state CheckBox unchecked.";
+        //    //else text2.Text = "Three-state CheckBox checked.";
+        //}
 
         //private async void GetAllFood_Click(object sender, RoutedEventArgs e)
         //{
@@ -90,7 +86,7 @@ namespace XAML
         private async void GetNextQuestion()
         {
             //Hämta första frågan
-            var questions = await ApiHelper.GetQuestions(9, _difficulty);
+            var questions = await ApiHelper.GetQuestions(9, _difficulty, _type);
             var question = questions.First();
 
             var answers = question.RandomAnswers;
@@ -144,6 +140,13 @@ namespace XAML
         private void SetLevel(object sender, RoutedEventArgs e)
         {
             _difficulty = (string)((RadioButton)sender).CommandParameter;
+            GetNextQuestion();
+        }
+
+        private void SetType (object sender, RoutedEventArgs e)
+        {
+            _type = (string)((RadioButton)sender).CommandParameter;
+            GetNextQuestion();
         }
     }
 }
