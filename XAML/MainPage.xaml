@@ -84,7 +84,7 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Right">
-                <TextBox PlaceholderText="Score" Width="168"/>
+                <TextBox x:Name="score" PlaceholderText="Score" Width="168"/>
             </StackPanel>
 
             <!--<Button Grid.Row="0" 

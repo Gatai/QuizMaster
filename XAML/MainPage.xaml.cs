@@ -20,7 +20,10 @@ namespace XAML
         //synlig i denna klassen 
         private string _difficulty;
         private string _type;
-        private List<Question> _questions = new List<Question>();
+        private List<Question> _questions;
+        private List<Question> _completedQuestions;
+        private List<Question> _inCorrectAnswers;
+        private List<Question> _correctAnswers;
         public List<Category> Categories { get; set; }
         public MainPage()
         {
@@ -41,6 +44,8 @@ namespace XAML
                 var message = new MessageDialog("Correct answer!");
                 await message.ShowAsync();
             }
+            _correctAnswers.Add(_questions.First());
+            // tar bort en fråga ifrån listan
             if (_questions.Count > 0)
             {
                 _questions.Remove(_questions.First());
@@ -58,18 +63,29 @@ namespace XAML
                 //var message = new MessageDialog(" You click on the " + button.Content);
                 var message = new MessageDialog("Wrong answer!");
                 await message.ShowAsync();
+                _inCorrectAnswers.Add(_questions.First());
+                // tar bort en fråga ifrån listan
+                if (_questions.Count > 0)
+                {
+                    _questions.Remove(_questions.First());
+                }
+                //Hämtar en ny fråga om man klickat på rätt svar
+                await GetNextQuestionAsync();
             }
+
         }
 
         private async Task GetNextQuestionAsync()
         {
             if (_questions.Count == 0)
             {
-                var message = new MessageDialog("No more questions!");
+                var message = new MessageDialog($"Game over!\nCorrect answers: {_correctAnswers.Count()} of questions: {amountBox.Text}");
                 _ = await message.ShowAsync();
                 return;
             }
 
+            _completedQuestions.Add(_questions.First());
+            UpdateProgress();
             var question = _questions.First();
 
             var answers = question.RandomAnswers;
@@ -78,7 +94,7 @@ namespace XAML
 
             SetAnswerButton(RedButton, answers[0], question.CorrectAnswer);
 
-            //Om det finns 3 fel svar då vissa blå och gul knapparna
+            //Om det finns fler svar på en fråga
             if (question.IncorrectAnswers.Count == 3)
             {
                 BlueButton.Visibility = Visibility.Visible;
@@ -128,11 +144,7 @@ namespace XAML
         {
             _type = (string)((RadioButton)sender).CommandParameter;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void CategoryChanged(object sender, SelectionChangedEventArgs e)
         {
             StartButton.IsEnabled = true;
@@ -140,12 +152,20 @@ namespace XAML
 
         private async void StartGameAsync(object sender, RoutedEventArgs e)
         {
-
             StartButton.IsEnabled = false;
 
             var selectedCategory = CategoryComboBox.SelectedItem as Category;
             _questions = await ApiHelper.GetQuestions(selectedCategory.Id, _difficulty, _type, Convert.ToInt32(amountBox.Text));
+            _inCorrectAnswers = new List<Question>();
+            _correctAnswers = new List<Question>();
+            _completedQuestions = new List<Question>();
+
             await GetNextQuestionAsync();
+        }
+
+        private void UpdateProgress()
+        {
+            score.Text =$"{_completedQuestions.Count()} / {amountBox.Text}";
         }
     }
 }
