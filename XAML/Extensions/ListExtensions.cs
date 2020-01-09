@@ -9,7 +9,11 @@ namespace XAML.Extensions
 {
     public static class ListExtensions
     {
-
+        /// <summary>
+        /// Get RandomAnswers
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
         public static void Shuffle<T>(this IList<T> list)
         {
             RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();

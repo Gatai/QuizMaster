@@ -12,7 +12,7 @@ namespace XAML.Helpers
     public class ApiHelper
     {
         //Get queations
-        public async static Task<List<Question>> GetQuestions(int category, string difficulty, string type)
+        public async static Task<List<Question>> GetQuestions(int category, string difficulty, string type, int amount)
         {
             //Create an HTTP client object
             Windows.Web.Http.HttpClient httpClient = new Windows.Web.Http.HttpClient();
@@ -33,8 +33,14 @@ namespace XAML.Helpers
             {
                 throw new Exception("Invalid header value: " + header);
             }
-
-            string url = $"https://opentdb.com/api.php?amount=5&category={category}&difficulty={difficulty}&type={type}";
+            
+            string url = $"https://opentdb.com/api.php?amount={amount}&category={category}&difficulty={difficulty}";
+            
+            if (type != "mix")
+            {
+                url += $"&type={type}";
+                    
+            }
             HttpClient ApiHelper = new HttpClient();
             ApiHelper.DefaultRequestHeaders.Accept.Clear();
             ApiHelper.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -87,5 +93,7 @@ namespace XAML.Helpers
                 return categoryRoot.Categories.ToList();
             }
         }
+
+       
     }
 }

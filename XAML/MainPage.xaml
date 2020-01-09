@@ -83,6 +83,10 @@
                 <Image Source="Pictures/dice.png" Height="200" Width="200"/>
             </StackPanel>
 
+            <StackPanel HorizontalAlignment="Right">
+                <TextBox PlaceholderText="Score" Width="168"/>
+            </StackPanel>
+
             <!--<Button Grid.Row="0" 
                     HorizontalAlignment="Right" 
                     Click="GetAllFood_Click" CommandParameter="{Binding ElementName = QTextBlock}" >Call API Food</Button>-->
@@ -101,6 +105,8 @@
             <Grid.RowDefinitions >
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -111,35 +117,52 @@
                           DisplayMemberPath="CategoryName"
                           SelectedValuePath="Id"
                           PlaceholderText="Select Category"
-                          Width="200">
+                          Width="200"
+                          SelectionChanged="CategoryChanged"
+                          Background="Beige">
                 </ComboBox>
                 
               
 
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" Background="Beige">
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" >
+                <TextBox x:Name="amountBox" Width="200" Height="40" PlaceholderText="Number of Questions" Text="3" > </TextBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Background="Beige">
                 <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="hard">
                     hard
                 </RadioButton>
                 <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="medium">
                     medium
                 </RadioButton>
-                <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="easy" IsChecked="True" >
+                <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="easy" >
                     easy
                 </RadioButton>
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Background="White">
+            <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="2" Background="White">
                 <RadioButton GroupName="type" Checked="SetType" CommandParameter="mix">
                     Any Type
                 </RadioButton>
                 <RadioButton GroupName="type" Checked="SetType" CommandParameter="multiple">
                     Multiple choice
                 </RadioButton>
-                <RadioButton GroupName="type" Checked="SetType" CommandParameter="boolean" IsChecked="True" >
+                <RadioButton GroupName="type" Checked="SetType" CommandParameter="boolean" >
                     True/False
                 </RadioButton>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="3" >
+                <Button Content="Start Game"
+                        Background="Green" 
+                        Margin="4" 
+                        Width="190"
+                        Click="StartGameAsync"
+                        x:Name="StartButton"
+                        IsEnabled="False"/>
             </StackPanel>
 
             <!--<Grid Grid.Row="3" Grid.Column="3" Name="grid">
