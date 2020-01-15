@@ -73,7 +73,6 @@ namespace XAML.Views
                 //var message = new MessageDialog($"Game over!\nCorrect answers: {_correctAnswers.Count()} of questions: {_numberOfQuestions}");
                 //_ = await message.ShowAsync();
 
-                //
                 GameEnded?.Invoke(this, EventArgs.Empty);
 
                 return;

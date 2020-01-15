@@ -44,6 +44,7 @@
                           SelectionChanged="CategoryChanged"
                           Background="Beige">
                 </ComboBox>
+
                 <TextBox x:Name="amountBox" Width="200" Height="40" PlaceholderText="Number of Questions" Text="3" ></TextBox>
 
                 <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="hard">
@@ -64,6 +65,7 @@
                 <RadioButton GroupName="type" Checked="SetType" CommandParameter="boolean" >
                     True/False
                 </RadioButton>
+
                 <Button Content="Start Game"
                         Background="Green" 
                         Margin="4" 

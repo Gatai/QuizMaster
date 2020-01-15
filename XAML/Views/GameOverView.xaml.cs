@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -19,6 +20,7 @@ namespace XAML.Views
 {
     public sealed partial class GameOverView : UserControl
     {
+        public event EventHandler NewGame;
 
         public GameOverView()
         {
@@ -31,5 +33,9 @@ namespace XAML.Views
             Text.Text = $"Game over!";
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NewGame?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

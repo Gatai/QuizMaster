@@ -50,5 +50,11 @@ namespace XAML
             var correctAnswer = QuestionView.CorrectAnswers;
             GameOverView.GameEnd(correctAnswer, count);
         }
+
+        private void QuestionView_NewGame(object sender, EventArgs e)
+        {
+            StartGameView.Visibility = Visibility.Visible;
+            GameOverView.Visibility = Visibility.Collapsed;
+        }
     }
 }

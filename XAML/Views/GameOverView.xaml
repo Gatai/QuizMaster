@@ -26,8 +26,15 @@
 
             <TextBlock x:Name="score" 
                        Width="auto"/>
+            
             <TextBlock x:Name="Text" 
                        Width="auto"/>
+            
+            <Button HorizontalAlignment="Center"
+                    Content="New Game" 
+                    Click="Button_Click"
+                    x:Name="NewGameButton"/>
+
         </StackPanel>
 
     </Grid>

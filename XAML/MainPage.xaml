@@ -12,7 +12,7 @@
 
         <views:StartGameView x:Name="StartGameView" GameStarted="StartGameView_GameStarted"/>
         <views:QuestionView x:Name="QuestionView" Visibility="Collapsed" GameEnded ="QuestionView_GameEnded"/>
-        <views:GameOverView x:Name="GameOverView" Visibility="Collapsed" />
+        <views:GameOverView x:Name="GameOverView" Visibility="Collapsed" NewGame="QuestionView_NewGame"/>
     
     </StackPanel>
     
