@@ -1,0 +1,79 @@
+﻿<UserControl
+    x:Class="XAML.Views.StartGameView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XAML.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--hur hög raden det ska vara-->
+            <RowDefinition Height="200"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--Den täcker 2 columner-->
+        <Grid Background="Aquamarine" Grid.ColumnSpan="2" Grid.Row="0" >
+
+            <TextBlock Foreground="BlueViolet" FontSize="50" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center">
+               Welcome to Quiz master
+            </TextBlock>
+            <StackPanel HorizontalAlignment="Left">
+                <Image Source="Pictures/dice.png" Height="200" Width="200"/>
+            </StackPanel>
+
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <StackPanel>
+                <!--<TextBlock >Selected Item </TextBlock>-->
+                <ComboBox x:Name="CategoryComboBox"
+                          ItemsSource="{x:Bind Categories}"
+                          DisplayMemberPath="CategoryName"
+                          SelectedValuePath="Id"
+                          PlaceholderText="Select Category"
+                          Width="200"
+                          SelectionChanged="CategoryChanged"
+                          Background="Beige">
+                </ComboBox>
+                <TextBox x:Name="amountBox" Width="200" Height="40" PlaceholderText="Number of Questions" Text="3" ></TextBox>
+
+                <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="hard">
+                    hard
+                </RadioButton>
+                <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="medium">
+                    medium
+                </RadioButton>
+                <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="easy" >
+                    easy
+                </RadioButton>
+                <RadioButton GroupName="type" Checked="SetType" CommandParameter="mix">
+                    Any Type
+                </RadioButton>
+                <RadioButton GroupName="type" Checked="SetType" CommandParameter="multiple">
+                    Multiple choice
+                </RadioButton>
+                <RadioButton GroupName="type" Checked="SetType" CommandParameter="boolean" >
+                    True/False
+                </RadioButton>
+                <Button Content="Start Game"
+                        Background="Green" 
+                        Margin="4" 
+                        Width="190"
+                        Click="StartGameClick"
+                        x:Name="StartButton"
+                        IsEnabled="False"/>
+            </StackPanel>
+        </Grid>
+        <!--Utseende som startGameview-->
+        <!--<views:StartGameView x:Name="StartGameView" GameStarted="StartGameView_GameStarted"/>-->
+    </Grid>
+</UserControl>

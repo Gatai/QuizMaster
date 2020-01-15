@@ -10,162 +10,45 @@ using System.Collections.Generic;
 using XAML.Models;
 using System.Threading.Tasks;
 using System.Web;
+using XAML.Views;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace XAML
 {
     public sealed partial class MainPage : Page
-    {
-        //synlig i denna klassen 
-        private string _difficulty;
-        private string _type;
-        private List<Question> _questions;
-        private List<Question> _completedQuestions;
-        private List<Question> _inCorrectAnswers;
-        private List<Question> _correctAnswers;
-        public List<Category> Categories { get; set; }
+    {   
         public MainPage()
         {
             this.InitializeComponent();
-
-            //Hämta en fråga ifrån API
-            //detta startat direkt när programmet är igång
-            GetCategories();
         }
 
-        private async void Button_Click_Correct(object sender, RoutedEventArgs e)
+        private void StartGameView_GameStarted(object sender, EventArgs e)
         {
-            var button = (Button)sender;
+            var startGame = ((StartGameView)sender);
 
-            if (button != null)
-            {
-                //var message = new MessageDialog(" You click on the " + button.Content);
-                var message = new MessageDialog("Correct answer!");
-                await message.ShowAsync();
-            }
-            _correctAnswers.Add(_questions.First());
-            // tar bort en fråga ifrån listan
-            if (_questions.Count > 0)
-            {
-                _questions.Remove(_questions.First());
-            }
-            //Hämtar en ny fråga om man klickat på rätt svar
-            await GetNextQuestionAsync();
-        }
+            var category = startGame.SelectedCategory().Id; var dif = startGame.Difficulty;var typ = startGame.Type;var count = startGame.NumberOfQuestions;
 
-        private async void Button_Click_Incorrect(object sender, RoutedEventArgs e)
-        {
-            var button = (Button)sender;
-
-            if (button != null)
-            {
-                //var message = new MessageDialog(" You click on the " + button.Content);
-                var message = new MessageDialog("Wrong answer!");
-                await message.ShowAsync();
-                _inCorrectAnswers.Add(_questions.First());
-                // tar bort en fråga ifrån listan
-                if (_questions.Count > 0)
-                {
-                    _questions.Remove(_questions.First());
-                }
-                //Hämtar en ny fråga om man klickat på rätt svar
-                await GetNextQuestionAsync();
-            }
-
-        }
-
-        private async Task GetNextQuestionAsync()
-        {
-            if (_questions.Count == 0)
-            {
-                var message = new MessageDialog($"Game over!\nCorrect answers: {_correctAnswers.Count()} of questions: {amountBox.Text}");
-                _ = await message.ShowAsync();
-                return;
-            }
-
-            _completedQuestions.Add(_questions.First());
-            UpdateProgress();
-            var question = _questions.First();
-
-            var answers = question.RandomAnswers;
-
-            QTextBlock.Text = HttpUtility.HtmlDecode(question.TheQuestion);
-
-            SetAnswerButton(RedButton, answers[0], question.CorrectAnswer);
-
-            //Om det finns fler svar på en fråga
-            if (question.IncorrectAnswers.Count == 3)
-            {
-                BlueButton.Visibility = Visibility.Visible;
-                YellowButton.Visibility = Visibility.Visible;
-
-                SetAnswerButton(GreenButton, answers[1], HttpUtility.HtmlDecode(question.CorrectAnswer));
-                SetAnswerButton(YellowButton, answers[2], HttpUtility.HtmlDecode(question.CorrectAnswer));
-                SetAnswerButton(BlueButton, answers[3], HttpUtility.HtmlDecode(question.CorrectAnswer));
-            }
-
-            //True or False frågor
-            if (question.IncorrectAnswers.Count == 1)
-            {
-                BlueButton.Visibility = Visibility.Collapsed;
-                YellowButton.Visibility = Visibility.Collapsed;
-
-                SetAnswerButton(GreenButton, answers[1], question.CorrectAnswer);
-            }
-        }
-
-        private void GetCategories()
-        {
-            var task = Task.Run(() => ApiHelper.GetCategories());
+            var task = Task.Run(() => ApiHelper.GetQuestions(category,dif,typ,count));
             task.Wait();
-            Categories = task.Result;
+            // var questions = await ApiHelper.GetQuestions(startGame.SelectedCategory().Id, startGame.Difficulty, startGame.Type, startGame.NumberOfQuestions);
+            QuestionView.CreateGame(task.Result);
+            QuestionView.StartGame();
+
+            //var message = new MessageDialog("The user started the game, selected category " + startGame.SelectedCategory().CategoryName);
+            //_ = message.ShowAsync();
+            StartGameView.Visibility = Visibility.Collapsed;
+            QuestionView.Visibility = Visibility.Visible;
         }
 
-        private void SetAnswerButton(Button button, string answer, string correctAnswer)
+        private void QuestionView_GameEnded(object sender, EventArgs e)
         {
-            //Städar bort föregående klick event
-            button.Click -= Button_Click_Correct;
-            button.Click -= Button_Click_Incorrect;
-            button.Content = answer;
-            if (answer == correctAnswer)
-                button.Click += Button_Click_Correct;
+            GameOverView.Visibility = Visibility.Visible;
+            QuestionView.Visibility = Visibility.Collapsed;
 
-            else
-                button.Click += Button_Click_Incorrect;
-        }
-
-        private void SetLevel(object sender, RoutedEventArgs e)
-        {
-            _difficulty = (string)((RadioButton)sender).CommandParameter;
-        }
-
-        private void SetType(object sender, RoutedEventArgs e)
-        {
-            _type = (string)((RadioButton)sender).CommandParameter;
-        }
-
-        private void CategoryChanged(object sender, SelectionChangedEventArgs e)
-        {
-            StartButton.IsEnabled = true;
-        }
-
-        private async void StartGameAsync(object sender, RoutedEventArgs e)
-        {
-            StartButton.IsEnabled = false;
-
-            var selectedCategory = CategoryComboBox.SelectedItem as Category;
-            _questions = await ApiHelper.GetQuestions(selectedCategory.Id, _difficulty, _type, Convert.ToInt32(amountBox.Text));
-            _inCorrectAnswers = new List<Question>();
-            _correctAnswers = new List<Question>();
-            _completedQuestions = new List<Question>();
-
-            await GetNextQuestionAsync();
-        }
-
-        private void UpdateProgress()
-        {
-            score.Text =$"{_completedQuestions.Count()} / {amountBox.Text}";
+           var count = QuestionView.NumberOfQuestions;
+            var correctAnswer = QuestionView.CorrectAnswers;
+            GameOverView.GameEnd(correctAnswer, count);
         }
     }
 }
