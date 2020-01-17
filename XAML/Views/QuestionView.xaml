@@ -9,32 +9,29 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    <Grid >
+    <Grid>
         <Grid.RowDefinitions>
             <!--hur hög raden det ska vara-->
             <RowDefinition Height="200"/>
-            <RowDefinition/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+
 
         <!--Den täcker 2 columner-->
-        <Grid Background="Aquamarine" Grid.ColumnSpan="2" Grid.Row="0" >
+        <Grid Grid.Row="0">
 
             <TextBlock Foreground="BlueViolet" FontSize="50" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center">
-               Welcome to Quiz master
+               Lets play!
             </TextBlock>
             <StackPanel HorizontalAlignment="Left">
                 <Image Source="Pictures/dice.png" Height="200" Width="200"/>
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Right" >
-                <TextBox x:Name="score" IsEnabled ="False" Background="Red" Width="168"/>
+                <TextBox x:Name="score"  Width="168"/>
             </StackPanel>
 
         </Grid>
@@ -43,13 +40,13 @@
 
         <!-- <<<<<<<<<<<<<<<<< FÄLTET PÅ DEN ENSKILD FRÅGA OCH KNAPPARNA <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
 
-        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="2,0,0,0">
+        <Grid Grid.Row="1" Grid.Column="0"  Margin="2,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"/>
-                <RowDefinition Height="303*"/>
-                <RowDefinition Height="397*"/>
+                <RowDefinition Height="auto"/>
+                
             </Grid.RowDefinitions>
-            <Rectangle Fill="RosyBrown"/>
+            <Rectangle Fill="RosyBrown" Width="auto"/>
             <!--<ListBox x:Name="Xz" DisplayMemberPath='TheQuestion'>
             </ListBox>-->
             <TextBlock FontSize="24" FontWeight="Bold" TextWrapping="Wrap" 
@@ -57,9 +54,7 @@
                        VerticalAlignment="Center" x:Name="QTextBlock">
             </TextBlock>
 
-            <Rectangle Fill="Aquamarine" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,-32" />
-
-            <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" >
+            <Grid Grid.Row="2" Margin="0,100,0,869" Grid.Column="0" >
                 <!--rad-->
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -85,54 +80,31 @@
 
                 <Button Background="Blue" Grid.Row="1" Grid.Column="3" FontSize="18" FontWeight="Bold"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" 
-                        Height="75" x:Name="YellowButton">
+                        Height="75" Margin="0 50 0 0" x:Name="YellowButton">
                 </Button>
 
                 <Button Background="Yellow" Grid.Row="1" Grid.Column="0" FontSize="18" FontWeight="Bold"
                         HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" 
-                        Height="75" x:Name="BlueButton">
+                        Height="75" Margin="0 50 0 0" x:Name="BlueButton">
                 </Button>
             </Grid>
+
+            <Grid  Grid.Row="3 ">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+
+                </Grid.ColumnDefinitions>
+
+                <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="0"/>
+                <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="1"/>
+                <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="2"/>
+                <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="4"/>
+            </Grid>
+
         </Grid>
-        <!-- <<<<<<<<<<<<<<<<<  SLUT, FÄLTET PÅ DEN ENSKILD FRÅGA OCH KNAPPARNA <<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-
-        <!--<Rectangle Fill="Azure" 
-                       Stretch="Fill" 
-                       Grid.Row="1" 
-                       Grid.Column="1"/>-->
-
-
-        <!--<Button HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Button.Content> -->
-        <!--Behöver inte ha det då det är redan i deafult i button-->
-        <!--
-                <StackPanel Orientation="Horizontal">
-                    
-        -->
-        <!--använder grid för att få den andra star på den första star-->
-        <!--
-        
-                    <Grid>
-                        
-                        
-                        -->
-        <!--<FontIcon Glyph="E726" Foreground="Red"/>
-                        <FontIcon Glyph="E726" Foreground="Black"/>-->
-
-        <!--<SymbolIcon Symbol="SolidStar" Foreground="Gold"/>
-                        <SymbolIcon Symbol="OutlineStar" Foreground="Black"/>-->
-        <!--
-                    </Grid>
-
-                    <TextBlock Text="Add Thing" Margin="5 0 0 0"/>
-
-                </StackPanel>
-            </Button.Content>
-
-        </Button>-->
 
     </Grid>
-
-
-
 </UserControl>

@@ -29,11 +29,19 @@ namespace XAML.Views
 
         public void GameEnd(int correctAnswers, int numberOfQuestions)
         {
-            score.Text = $"Correct answers: {correctAnswers} of questions: {numberOfQuestions}";
-            Text.Text = $"Game over!";
+            result.Text = $"Correct answers: {correctAnswers} of questions: {numberOfQuestions}";
+
+            if (correctAnswers == numberOfQuestions)
+            {
+                Rubrik.Text = "Congratulations you did it!";
+            }
+            else
+            {
+                Rubrik.Text = "Not so good, but do you want to play again?";
+            }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             NewGame?.Invoke(this, EventArgs.Empty);
         }

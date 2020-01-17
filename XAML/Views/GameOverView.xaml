@@ -6,36 +6,59 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    >
+    
+    <Grid>
 
-    <Grid Background="Aquamarine" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel HorizontalAlignment="Center" >
         <TextBlock Foreground="BlueViolet" 
-                   FontSize="100" 
+                   FontSize="60" 
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Center">
-                The End
+                   VerticalAlignment="Center"
+                   Grid.Row="0"
+                   x:Name="Rubrik">
         </TextBlock>
             
-            <!--En bild-->
-        <!--<StackPanel HorizontalAlignment="Left">
-            <Image Source="Pictures/dice.png" Height="200" Width="200"/>
-        </StackPanel>-->
+ 
+            <TextBlock x:Name="result" 
+                       Width="auto" 
+                       TextAlignment="Center"
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center" 
+                       FontWeight="Bold"
+                       Grid.Row="1"
+                       Height="100"
+                       FontSize="30"/>
+        
 
-            <TextBlock x:Name="score" 
-                       Width="auto"/>
-            
-            <TextBlock x:Name="Text" 
-                       Width="auto"/>
-            
-            <Button HorizontalAlignment="Center"
-                    Content="New Game" 
-                    Click="Button_Click"
-                    x:Name="NewGameButton"/>
+            <Button Grid.Row="2" 
+                    HorizontalAlignment="Center"
+                    Content="Play again" 
+                    Click="NewGameButton_Click"
+                    x:Name="NewGameButton" 
+                    Width="200"
+                    FontSize="20"/>
 
-        </StackPanel>
+        <Grid  Grid.Row="3 ">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+
+            <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="0"/>
+            <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="1"/>
+            <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="2"/>
+            <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="4"/>
+        </Grid>
 
     </Grid>
 </UserControl>

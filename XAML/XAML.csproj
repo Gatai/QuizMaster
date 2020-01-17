@@ -143,7 +143,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pictures\dice.png" />
+    <Content Include="Image\dice.png" />
     <Content Include="Pictures\dog.png" />
     <Content Include="Pictures\dog2.png" />
     <Content Include="Properties\Default.rd.xml" />

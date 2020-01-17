@@ -8,6 +8,7 @@
     xmlns:views="using:XAML.Views"
     mc:Ignorable="d">
 
+    <Grid Background="Transparent">
     <StackPanel>
 
         <views:StartGameView x:Name="StartGameView" GameStarted="StartGameView_GameStarted"/>
@@ -15,6 +16,7 @@
         <views:GameOverView x:Name="GameOverView" Visibility="Collapsed" NewGame="QuestionView_NewGame"/>
     
     </StackPanel>
-    
+    </Grid>
+
 
 </Page>

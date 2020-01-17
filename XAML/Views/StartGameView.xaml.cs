@@ -64,14 +64,15 @@ namespace XAML.Views
         private void CategoryChanged(object sender, SelectionChangedEventArgs e)
         {
             StartButton.IsEnabled = true;
+
         }
 
         private void StartGameClick(object sender, RoutedEventArgs e)
         {
-            StartButton.IsEnabled = false;
 
             var selectedCategory = CategoryComboBox.SelectedItem as Category;
 
+            //var radioButtons = 
 
             GameStarted?.Invoke(this, EventArgs.Empty);
 

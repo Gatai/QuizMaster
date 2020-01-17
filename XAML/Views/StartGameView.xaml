@@ -11,8 +11,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <!--hur hög raden det ska vara-->
-            <RowDefinition Height="200"/>
-            <RowDefinition/>
+            <RowDefinition Height="300"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -20,21 +20,21 @@
         </Grid.ColumnDefinitions>
 
         <!--Den täcker 2 columner-->
-        <Grid Background="Aquamarine" Grid.ColumnSpan="2" Grid.Row="0" >
-
-            <TextBlock Foreground="BlueViolet" FontSize="50" 
+        <Grid Grid.ColumnSpan="2" Grid.Row="0" >
+            <StackPanel Grid.Row="0">
+                <TextBlock Foreground="BlueViolet" FontSize="70" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center">
-               Welcome to Quiz master
-            </TextBlock>
-            <StackPanel HorizontalAlignment="Left">
-                <Image Source="Pictures/dice.png" Height="200" Width="200"/>
+                   Welcome to Quiz master
+                </TextBlock>
+                <Image Source="https://wtamu.edu/~cbaird/sq/images/dog2.jpg" Height="200" Width="200" />
             </StackPanel>
 
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-            <StackPanel>
+            <StackPanel Margin="0,0,0,446">
                 <!--<TextBlock >Selected Item </TextBlock>-->
+
                 <ComboBox x:Name="CategoryComboBox"
                           ItemsSource="{x:Bind Categories}"
                           DisplayMemberPath="CategoryName"
@@ -45,21 +45,31 @@
                           Background="Beige">
                 </ComboBox>
 
-                <TextBox x:Name="amountBox" Width="200" Height="40" PlaceholderText="Number of Questions" Text="3" ></TextBox>
+                <Border Margin="0" BorderThickness="1" BorderBrush="Black" Height="30">
+                    <TextBlock HorizontalTextAlignment="Center" TextAlignment="Center" >Number of Questions:</TextBlock>
+                </Border>
+                <TextBox x:Name="amountBox" Width="200" Height="30" PlaceholderText="Number of Questions" Text="3" ></TextBox>
 
-                <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="hard">
-                    hard
+                <Border Margin="0" BorderThickness="1" BorderBrush="Black" Height="30">
+                    <TextBlock TextAlignment="Center" >Select Difficulty:</TextBlock>
+                </Border>
+                <RadioButton GroupName="dif" Checked="SetLevel" IsChecked="True" CommandParameter="easy" >
+                    easy
                 </RadioButton>
                 <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="medium">
                     medium
                 </RadioButton>
-                <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="easy" >
-                    easy
+                <RadioButton GroupName="dif" Checked="SetLevel" CommandParameter="hard">
+                    hard
                 </RadioButton>
-                <RadioButton GroupName="type" Checked="SetType" CommandParameter="mix">
+
+                <Border Margin="0" BorderThickness="1" BorderBrush="Black" Height="30">
+                    <TextBlock TextAlignment="Center" >Select Type:</TextBlock>
+                </Border>
+                <RadioButton GroupName="type" Checked="SetType" IsChecked="True" CommandParameter="mix">
                     Any Type
                 </RadioButton>
-                <RadioButton GroupName="type" Checked="SetType" CommandParameter="multiple">
+                <RadioButton GroupName="type" Checked="SetType"  CommandParameter="multiple">
                     Multiple choice
                 </RadioButton>
                 <RadioButton GroupName="type" Checked="SetType" CommandParameter="boolean" >
@@ -78,4 +88,5 @@
         <!--Utseende som startGameview-->
         <!--<views:StartGameView x:Name="StartGameView" GameStarted="StartGameView_GameStarted"/>-->
     </Grid>
+
 </UserControl>
