@@ -133,12 +133,12 @@ namespace XAML.Views
         {
             var button = (Button)sender;
 
-            if (button != null)
-            {
-                //var message = new MessageDialog(" You click on the " + button.Content);
-                var message = new MessageDialog("Correct answer!");
-                await message.ShowAsync();
-            }
+            //if (button != null)
+            //{
+            //    //var message = new MessageDialog(" You click on the " + button.Content);
+            //    var message = new MessageDialog("Correct answer!");
+            //    await message.ShowAsync();
+            //}
             _correctAnswers.Add(_questions.First());
             // tar bort en fråga ifrån listan
             if (_questions.Count > 0)
@@ -156,8 +156,8 @@ namespace XAML.Views
             if (button != null)
             {
                 //var message = new MessageDialog(" You click on the " + button.Content);
-                var message = new MessageDialog("Wrong answer!");
-                await message.ShowAsync();
+                //var message = new MessageDialog("Wrong answer!");
+                //await message.ShowAsync();
                 _inCorrectAnswers.Add(_questions.First());
                 // tar bort en fråga ifrån listan
                 if (_questions.Count > 0)

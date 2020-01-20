@@ -98,10 +98,10 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="0"/>
+                <!--<Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="0"/>
                 <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="1"/>
                 <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="2"/>
-                <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="4"/>
+                <Image Source="https://i.pinimg.com/originals/48/12/9a/48129a6cab9fe88270febd6310e071c3.jpg" Height="400" Width="350" Grid.Column="4"/>-->
             </Grid>
 
         </Grid>
