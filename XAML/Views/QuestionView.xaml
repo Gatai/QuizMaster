@@ -21,10 +21,12 @@
         <!--Den täcker 2 columner-->
         <Grid Grid.Row="0">
 
-            <TextBlock Foreground="BlueViolet" FontSize="50" 
+            <TextBlock Foreground="BlueViolet"
+                       FontSize="50" 
                        HorizontalAlignment="Center" 
-                       VerticalAlignment="Center">
-               Lets play!
+                       VerticalAlignment="Center"
+                       x:Name="QuestionViewHeader">
+               <!--Lets play!-->
             </TextBlock>
             <StackPanel HorizontalAlignment="Left">
                 <Image Source="Pictures/dice.png" Height="200" Width="200"/>

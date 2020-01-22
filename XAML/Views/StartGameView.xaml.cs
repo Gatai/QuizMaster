@@ -72,8 +72,6 @@ namespace XAML.Views
 
             var selectedCategory = CategoryComboBox.SelectedItem as Category;
 
-            //var radioButtons = 
-
             GameStarted?.Invoke(this, EventArgs.Empty);
 
             //rootFrame.Navigate(typeof(StartGameView), e.Arguments);

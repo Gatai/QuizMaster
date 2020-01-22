@@ -46,7 +46,7 @@ namespace XAML.Views
             {
                 return _numberOfQuestions;
             }
-        } 
+        }
         public QuestionView()
         {
             this.InitializeComponent();
@@ -64,6 +64,8 @@ namespace XAML.Views
         public void StartGame()
         {
             GetNextQuestionAsync();
+
+                QuestionViewHeader.Text = "The game has started!";
         }
 
         private async Task GetNextQuestionAsync()
