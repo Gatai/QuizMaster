@@ -63,9 +63,9 @@ namespace XAML.Views
 
         public void StartGame()
         {
-            GetNextQuestionAsync();
+             GetNextQuestionAsync();
 
-                QuestionViewHeader.Text = "The game has started!";
+            QuestionViewHeader.Text = "The game has started!";
         }
 
         private async Task GetNextQuestionAsync()
@@ -147,7 +147,7 @@ namespace XAML.Views
             {
                 _questions.Remove(_questions.First());
             }
-            //Hämtar en ny fråga om man klickat på rätt svar
+           
             await GetNextQuestionAsync();
         }
 
@@ -157,9 +157,9 @@ namespace XAML.Views
 
             if (button != null)
             {
-                //var message = new MessageDialog(" You click on the " + button.Content);
                 //var message = new MessageDialog("Wrong answer!");
                 //await message.ShowAsync();
+
                 _inCorrectAnswers.Add(_questions.First());
                 // tar bort en fråga ifrån listan
                 if (_questions.Count > 0)

@@ -73,9 +73,6 @@ namespace XAML.Views
             var selectedCategory = CategoryComboBox.SelectedItem as Category;
 
             GameStarted?.Invoke(this, EventArgs.Empty);
-
-            //rootFrame.Navigate(typeof(StartGameView), e.Arguments);
-            //await GetNextQuestionAsync();
         }
     }
 }
